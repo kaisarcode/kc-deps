@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuremap [
+  <!ELEMENT configuremap (configure)+>
+  <!ATTLIST configuremap xmlns CDATA #FIXED ''>
+  <!ELEMENT configure EMPTY>
+  <!ATTLIST configure xmlns CDATA #FIXED '' name NMTOKEN #REQUIRED
+    value CDATA #REQUIRED>
+]>
+<!--
+  ImageMagick build configuration.
+-->
+<configuremap>
+  <configure name="CC" value="x86_64-w64-mingw32-gcc"/>
+  <configure name="CFLAGS" value="-I/usr/local/lib/kaisarcode/imagemagick/win64/include/libpng16 -I/usr/local/lib/kaisarcode/imagemagick/win64/include -I/usr/local/lib/kaisarcode/imagemagick/win64/include -Wall -O3 -fPIC -Wno-deprecated-declarations -fexceptions -pthread -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16"/>
+  <configure name="CODER_PATH" value="/usr/local/lib/kaisarcode/imagemagick/win64/lib/ImageMagick-6.9.13/modules-Q16/coders"/>
+  <configure name="CONFIGURE_PATH" value="/usr/local/lib/kaisarcode/imagemagick/win64/etc/ImageMagick-6/"/>
+  <configure name="CONFIGURE" value="./configure  '--host=x86_64-w64-mingw32' '--prefix=/usr/local/lib/kaisarcode/imagemagick/win64' '--enable-shared' '--disable-static' '--without-modules' '--without-perl' '--without-x' '--without-magick-plus-plus' '--without-utilities' '--disable-docs' '--disable-opencl' '--disable-openmp' '--with-png=yes' '--with-zlib=yes' 'CPPFLAGS=-I/usr/local/lib/kaisarcode/imagemagick/win64/include' 'LDFLAGS=-L/usr/local/lib/kaisarcode/imagemagick/win64/lib' 'LIBS=-lws2_32 -ladvapi32 -lurlmon -lpthread' 'CFLAGS=-O3 -fPIC -Wno-deprecated-declarations' 'PNG_CFLAGS=-I/usr/local/lib/kaisarcode/imagemagick/win64/include' 'PNG_LIBS=-L/usr/local/lib/kaisarcode/imagemagick/win64/lib -lpng16 -lz -lm' 'ZLIB_CFLAGS=-I/usr/local/lib/kaisarcode/imagemagick/win64/include' 'ZLIB_LIBS=-L/usr/local/lib/kaisarcode/imagemagick/win64/lib -lz' 'host_alias=x86_64-w64-mingw32' 'CC=x86_64-w64-mingw32-gcc' 'PKG_CONFIG=pkg-config --static' 'PKG_CONFIG_PATH=/usr/local/lib/kaisarcode/imagemagick/win64/lib/pkgconfig' 'PKG_CONFIG_LIBDIR=/usr/local/lib/kaisarcode/imagemagick/win64/lib/pkgconfig'"/>
+  <configure name="COPYRIGHT" value="Copyright (C) 1999 ImageMagick Studio LLC"/>
+  <configure name="CPPFLAGS" value="-I/usr/local/lib/kaisarcode/imagemagick/win64/include/ImageMagick-6 -D_DLL -D_MT"/>
+  <configure name="CXXFLAGS" value="-pthread"/>
+  <configure name="CXX" value="x86_64-w64-mingw32-g++"/>
+  <configure name="DEFS" value="-DHAVE_CONFIG_H"/>
+  <configure name="DELEGATES" value="png ps video zlib"/>
+  <configure name="DISTCHECK_CONFIG_FLAGS" value="'CC=x86_64-w64-mingw32-gcc' 'CFLAGS=-O3 -fPIC -Wno-deprecated-declarations' 'CPPFLAGS=-I/usr/local/lib/kaisarcode/imagemagick/win64/include' 'LDFLAGS=-L/usr/local/lib/kaisarcode/imagemagick/win64/lib' 'LIBS=-lws2_32 -ladvapi32 -lurlmon -lpthread'  --disable-deprecated  --with-quantum-depth=16  --with-jemalloc=no  --with-umem=no  --with-autotrace=no  --with-dps=no  --with-fftw=no  --with-fpx=no  --with-gslib=no  --with-fontpath=  --with-rsvg=no  --with-wmf=no  --with-perl=no "/>
+  <configure name="DOCUMENTATION_PATH" value="/usr/local/lib/kaisarcode/imagemagick/win64/share/doc/ImageMagick-6"/>
+  <configure name="EXEC-PREFIX" value="/usr/local/lib/kaisarcode/imagemagick/win64"/>
+  <configure name="EXECUTABLE_PATH" value="/usr/local/lib/kaisarcode/imagemagick/win64/bin"/>
+  <configure name="FEATURES" value="Cipher DPC"/>
+  <configure name="FILTER_PATH" value="/usr/local/lib/kaisarcode/imagemagick/win64/lib/ImageMagick-6.9.13/modules-Q16/filters"/>
+  <configure name="GIT_REVISION" value="8b003df48:20240901" />
+  <configure name="HOST" value="x86_64-w64-mingw32"/>
+  <configure name="INCLUDE_PATH" value="/usr/local/lib/kaisarcode/imagemagick/win64/include/ImageMagick-6"/>
+  <configure name="LDFLAGS" value="-L/usr/local/lib/kaisarcode/imagemagick/win64/lib -L/usr/local/lib/kaisarcode/imagemagick/win64/lib"/>
+  <configure name="LIBRARY_PATH" value="/usr/local/lib/kaisarcode/imagemagick/win64/lib/ImageMagick-6.9.13"/>
+  <configure name="LIBS" value="-lws2_32 -ladvapi32 -lurlmon -lpthread         -L/usr/local/lib/kaisarcode/imagemagick/win64/lib -lpng16 -lz -L/usr/local/lib/kaisarcode/imagemagick/win64/lib -L/usr/local/lib/kaisarcode/imagemagick/win64/lib -lz                          -L/usr/local/lib/kaisarcode/imagemagick/win64/lib -lz    -lgdi32 -luser32 -lm    -lpthread   "/>
+  <configure name="LIB_VERSION_NUMBER" value="6,9,13,16"/>
+  <configure name="LIB_VERSION" value="0x69D"/>
+  <configure name="NAME" value="ImageMagick"/>
+  <configure name="PCFLAGS" value="-DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -D_DLL -D_MT"/>
+  <configure name="PREFIX" value="/usr/local/lib/kaisarcode/imagemagick/win64"/>
+  <configure name="QuantumDepth" value="16"/>
+  <configure name="RELEASE_DATE" value="2024-09-01"/>
+  <configure name="SECURITY_POLICY" value="open"/>
+  <configure name="SHAREARCH_PATH" value="/usr/local/lib/kaisarcode/imagemagick/win64/lib/ImageMagick-6.9.13/config-Q16"/>
+  <configure name="SHARE_PATH" value="/usr/local/lib/kaisarcode/imagemagick/win64/share/ImageMagick-6"/>
+  <configure name="TARGET_CPU" value="x86_64"/>
+  <configure name="TARGET_OS" value="mingw32"/>
+  <configure name="TARGET_VENDOR" value="w64"/>
+  <configure name="VERSION" value="6.9.13"/>
+  <configure name="WEBSITE" value="https://legacy.imagemagick.org"/>
+</configuremap>

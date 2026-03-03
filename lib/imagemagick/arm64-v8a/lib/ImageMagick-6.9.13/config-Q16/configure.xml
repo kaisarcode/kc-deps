@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuremap [
+  <!ELEMENT configuremap (configure)+>
+  <!ATTLIST configuremap xmlns CDATA #FIXED ''>
+  <!ELEMENT configure EMPTY>
+  <!ATTLIST configure xmlns CDATA #FIXED '' name NMTOKEN #REQUIRED
+    value CDATA #REQUIRED>
+]>
+<!--
+  ImageMagick build configuration.
+-->
+<configuremap>
+  <configure name="CC" value="/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android24-clang"/>
+  <configure name="CFLAGS" value="-I/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/include/libpng16 -I/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/include -I/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/include -Wall -O3 -fPIC --sysroot=/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Wno-deprecated-declarations -fexceptions -pthread -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16"/>
+  <configure name="CODER_PATH" value="/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/lib/ImageMagick-6.9.13/modules-Q16/coders"/>
+  <configure name="CONFIGURE_PATH" value="/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/etc/ImageMagick-6/"/>
+  <configure name="CONFIGURE" value="./configure  '--host=aarch64-linux-android' '--prefix=/usr/local/lib/kaisarcode/imagemagick/arm64-v8a' '--enable-shared' '--disable-static' '--without-modules' '--without-perl' '--without-x' '--without-magick-plus-plus' '--without-utilities' '--disable-docs' '--disable-opencl' '--disable-openmp' '--with-png=yes' '--with-zlib=yes' 'CPPFLAGS=--sysroot=/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/sysroot -I/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/include' 'LDFLAGS=--sysroot=/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/sysroot -L/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/lib' 'LIBS=-lm -ldl' 'CFLAGS=-O3 -fPIC --sysroot=/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Wno-deprecated-declarations' 'PNG_CFLAGS=--sysroot=/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/sysroot -I/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/include' 'PNG_LIBS=--sysroot=/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/sysroot -L/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/lib -lpng16 -lz -lm' 'ZLIB_CFLAGS=--sysroot=/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/sysroot -I/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/include' 'ZLIB_LIBS=--sysroot=/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/sysroot -L/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/lib -lz' 'host_alias=aarch64-linux-android' 'CC=/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android24-clang' 'PKG_CONFIG=pkg-config --static' 'PKG_CONFIG_PATH=/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/lib/pkgconfig' 'PKG_CONFIG_LIBDIR=/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/lib/pkgconfig' 'CXX=/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android24-clang++'"/>
+  <configure name="COPYRIGHT" value="Copyright (C) 1999 ImageMagick Studio LLC"/>
+  <configure name="CPPFLAGS" value="-I/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/include/ImageMagick-6"/>
+  <configure name="CXXFLAGS" value="-pthread"/>
+  <configure name="CXX" value="/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android24-clang++"/>
+  <configure name="DEFS" value="-DHAVE_CONFIG_H"/>
+  <configure name="DELEGATES" value="png ps video zlib"/>
+  <configure name="DISTCHECK_CONFIG_FLAGS" value="'CC=/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android24-clang' 'CFLAGS=-O3 -fPIC --sysroot=/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Wno-deprecated-declarations' 'CPPFLAGS=--sysroot=/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/sysroot -I/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/include' 'CXX=/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android24-clang++' 'LDFLAGS=--sysroot=/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/sysroot -L/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/lib' 'LIBS=-lm -ldl'  --disable-deprecated  --with-quantum-depth=16  --with-jemalloc=no  --with-umem=no  --with-autotrace=no  --with-dps=no  --with-fftw=no  --with-fpx=no  --with-gslib=no  --with-fontpath=  --with-rsvg=no  --with-wmf=no  --with-perl=no "/>
+  <configure name="DOCUMENTATION_PATH" value="/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/share/doc/ImageMagick-6"/>
+  <configure name="EXEC-PREFIX" value="/usr/local/lib/kaisarcode/imagemagick/arm64-v8a"/>
+  <configure name="EXECUTABLE_PATH" value="/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/bin"/>
+  <configure name="FEATURES" value="Cipher DPC"/>
+  <configure name="FILTER_PATH" value="/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/lib/ImageMagick-6.9.13/modules-Q16/filters"/>
+  <configure name="GIT_REVISION" value="8b003df48:20240901" />
+  <configure name="HOST" value="aarch64-unknown-linux-android"/>
+  <configure name="INCLUDE_PATH" value="/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/include/ImageMagick-6"/>
+  <configure name="LDFLAGS" value="-L/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/lib --sysroot=/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c/toolchains/llvm/prebuilt/linux-x86_64/sysroot -L/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/lib"/>
+  <configure name="LIBRARY_PATH" value="/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/lib/ImageMagick-6.9.13"/>
+  <configure name="LIBS" value="-lm -ldl         -L/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/lib -lpng16 -lm -lz -lm -L/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/lib -L/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/lib -lz                          -L/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/lib -lz     -lm       "/>
+  <configure name="LIB_VERSION_NUMBER" value="6,9,13,16"/>
+  <configure name="LIB_VERSION" value="0x69D"/>
+  <configure name="NAME" value="ImageMagick"/>
+  <configure name="PCFLAGS" value="-DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16"/>
+  <configure name="PREFIX" value="/usr/local/lib/kaisarcode/imagemagick/arm64-v8a"/>
+  <configure name="QuantumDepth" value="16"/>
+  <configure name="RELEASE_DATE" value="2024-09-01"/>
+  <configure name="SECURITY_POLICY" value="open"/>
+  <configure name="SHAREARCH_PATH" value="/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/lib/ImageMagick-6.9.13/config-Q16"/>
+  <configure name="SHARE_PATH" value="/usr/local/lib/kaisarcode/imagemagick/arm64-v8a/share/ImageMagick-6"/>
+  <configure name="TARGET_CPU" value="aarch64"/>
+  <configure name="TARGET_OS" value="linux-android"/>
+  <configure name="TARGET_VENDOR" value="unknown"/>
+  <configure name="VERSION" value="6.9.13"/>
+  <configure name="WEBSITE" value="https://legacy.imagemagick.org"/>
+</configuremap>
