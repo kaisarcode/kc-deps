@@ -1,4 +1,4 @@
-prefix=${pcfiledir}/../..
+prefix=/home/kaisar/Work/kc-deps/lib/openssl/arm64-v8a
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
