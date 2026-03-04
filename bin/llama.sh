@@ -20,6 +20,14 @@ resolve_ndk_root() {
     printf "/usr/local/share/kaisarcode/toolchains/ndk/android-ndk-r27c\n"
 }
 
+copy_headers() {
+    arch="$1"
+    dst="$DEPS_ROOT/lib/llama.cpp/$arch/include"
+    mkdir -p "$dst/ggml"
+    cp "$DEPS_ROOT/src/llama.cpp/include/"*.h "$dst/"
+    cp "$DEPS_ROOT/src/llama.cpp/ggml/include/"*.h "$dst/ggml/"
+}
+
 compile() {
     arch=$1
     printf "\n\033[1;34m[BUILD] llama.cpp (%s)\033[0m\n" "$arch"
@@ -74,6 +82,7 @@ compile() {
     mkdir -p "$DEPS_ROOT/lib/llama.cpp/$arch"
 
     find "$build_dir" \( -name "*.so*" -o -name "*.dll*" -o -name "*.dll.a" \) -exec cp -d {} "$DEPS_ROOT/lib/llama.cpp/$arch/" \;
+    copy_headers "$arch"
 }
 
 run_build() {

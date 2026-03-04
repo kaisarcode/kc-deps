@@ -50,6 +50,27 @@ install_compiled_libs() {
     done
 }
 
+install_dev_headers() {
+    require_sudo
+    if [ -d "$SCRIPT_DIR/src/llama.cpp/include" ]; then
+        for arch_dir in "$SYS_LIB_ROOT/llama.cpp"/*; do
+            [ -d "$arch_dir" ] || continue
+            sudo mkdir -p "$arch_dir/include/ggml"
+            sudo rsync -a "$SCRIPT_DIR/src/llama.cpp/include/" "$arch_dir/include/"
+            sudo rsync -a "$SCRIPT_DIR/src/llama.cpp/ggml/include/" "$arch_dir/include/ggml/"
+        done
+        pass "Installed development headers for llama.cpp."
+    fi
+    if [ -d "$SCRIPT_DIR/src/stable-diffusion.cpp/include" ]; then
+        for arch_dir in "$SYS_LIB_ROOT/stable-diffusion.cpp"/*; do
+            [ -d "$arch_dir" ] || continue
+            sudo mkdir -p "$arch_dir/include"
+            sudo rsync -a "$SCRIPT_DIR/src/stable-diffusion.cpp/include/" "$arch_dir/include/"
+        done
+        pass "Installed development headers for stable-diffusion.cpp."
+    fi
+}
+
 install_sources() {
     src_root="$SCRIPT_DIR/src"
     mkdir -p "$src_root"
@@ -57,39 +78,44 @@ install_sources() {
 
     [ -d "llama.cpp" ] || git clone https://github.com/ggml-org/llama.cpp.git llama.cpp
     [ -d "stable-diffusion.cpp" ] || git clone https://github.com/leejet/stable-diffusion.cpp.git stable-diffusion.cpp
-    [ -d "sqlite3" ] || mkdir -p sqlite3 && curl -L https://www.sqlite.org/2025/sqlite-amalgamation-3490100.zip -o sqlite3.zip && unzip -q sqlite3.zip -d sqlite3-tmp && cp sqlite3-tmp/*/sqlite3.c sqlite3-tmp/*/sqlite3.h sqlite3/ && rm -rf sqlite3-tmp sqlite3.zip
-    [ -d "openssl" ] || curl -L "https://www.openssl.org/source/openssl-${OPENSSL_VER}.tar.gz" -o "openssl-${OPENSSL_VER}.tar.gz" && tar -xzf "openssl-${OPENSSL_VER}.tar.gz" && mv "openssl-${OPENSSL_VER}" openssl && rm "openssl-${OPENSSL_VER}.tar.gz"
-    [ -d "ImageMagick" ] || curl -L -o im.tar.gz "https://github.com/ImageMagick/ImageMagick6/archive/refs/tags/${IM_VER}.tar.gz" && tar -xf im.tar.gz && mv "ImageMagick6-${IM_VER}" "ImageMagick" && rm im.tar.gz
-    [ -d "zlib" ] || curl -L -o zlib.tar.gz "https://github.com/madler/zlib/releases/download/v${ZLIB_VER}/zlib-${ZLIB_VER}.tar.gz" && tar -xf zlib.tar.gz && mv "zlib-${ZLIB_VER}" "zlib" && rm zlib.tar.gz
-    [ -d "libpng" ] || curl -L -o libpng.tar.gz "https://download.sourceforge.net/libpng/libpng-${PNG_VER}.tar.gz" && tar -xf libpng.tar.gz && mv "libpng-${PNG_VER}" "libpng" && rm libpng.tar.gz
-    [ -d "resvg" ] || curl -L -o "resvg-${RESVG_VER}.tar.gz" "https://github.com/linebender/resvg/archive/refs/tags/v${RESVG_VER}.tar.gz" && tar -xf "resvg-${RESVG_VER}.tar.gz" && mv "resvg-${RESVG_VER}" resvg && rm "resvg-${RESVG_VER}.tar.gz"
-    pass "Source trees verified under $src_root."
-}
-
-install_host_packages() {
-    if ! command -v apt-get >/dev/null 2>&1; then
-        fail "apt-get is required to provision host cross-compilers on this machine."
+    if [ ! -d "sqlite3" ]; then
+        mkdir -p sqlite3
+        curl -L https://www.sqlite.org/2025/sqlite-amalgamation-3490100.zip -o sqlite3.zip
+        unzip -q sqlite3.zip -d sqlite3-tmp
+        cp sqlite3-tmp/*/sqlite3.c sqlite3-tmp/*/sqlite3.h sqlite3/
+        rm -rf sqlite3-tmp sqlite3.zip
     fi
-    sudo apt-get update
-    sudo apt-get install -y \
-        build-essential \
-        cmake \
-        ninja-build \
-        pkg-config \
-        curl \
-        unzip \
-        rsync \
-        perl \
-        make \
-        gcc \
-        g++ \
-        aarch64-linux-gnu-gcc \
-        g++-aarch64-linux-gnu \
-        binutils-aarch64-linux-gnu \
-        gcc-mingw-w64-x86-64 \
-        g++-mingw-w64-x86-64 \
-        binutils-mingw-w64-x86-64
-    pass "Host build packages installed."
+    if [ ! -d "openssl" ]; then
+        curl -L "https://www.openssl.org/source/openssl-${OPENSSL_VER}.tar.gz" -o "openssl-${OPENSSL_VER}.tar.gz"
+        tar -xzf "openssl-${OPENSSL_VER}.tar.gz"
+        mv "openssl-${OPENSSL_VER}" openssl
+        rm "openssl-${OPENSSL_VER}.tar.gz"
+    fi
+    if [ ! -d "ImageMagick" ]; then
+        curl -L -o im.tar.gz "https://github.com/ImageMagick/ImageMagick6/archive/refs/tags/${IM_VER}.tar.gz"
+        tar -xf im.tar.gz
+        mv "ImageMagick6-${IM_VER}" "ImageMagick"
+        rm im.tar.gz
+    fi
+    if [ ! -d "zlib" ]; then
+        curl -L -o zlib.tar.gz "https://github.com/madler/zlib/releases/download/v${ZLIB_VER}/zlib-${ZLIB_VER}.tar.gz"
+        tar -xf zlib.tar.gz
+        mv "zlib-${ZLIB_VER}" "zlib"
+        rm zlib.tar.gz
+    fi
+    if [ ! -d "libpng" ]; then
+        curl -L -o libpng.tar.gz "https://download.sourceforge.net/libpng/libpng-${PNG_VER}.tar.gz"
+        tar -xf libpng.tar.gz
+        mv "libpng-${PNG_VER}" "libpng"
+        rm libpng.tar.gz
+    fi
+    if [ ! -d "resvg" ]; then
+        curl -L -o "resvg-${RESVG_VER}.tar.gz" "https://github.com/linebender/resvg/archive/refs/tags/v${RESVG_VER}.tar.gz"
+        tar -xf "resvg-${RESVG_VER}.tar.gz"
+        mv "resvg-${RESVG_VER}" resvg
+        rm "resvg-${RESVG_VER}.tar.gz"
+    fi
+    pass "Source trees verified under $src_root."
 }
 
 install_ndk() {
@@ -137,7 +163,7 @@ install_rust() {
 main() {
     install_compiled_libs
     install_sources
-    install_host_packages
+    install_dev_headers
     install_ndk
     install_rust
     printf "\n\033[1;32m[SUCCESS]\033[0m Development runtime and toolchains installed.\n"
