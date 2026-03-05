@@ -52,6 +52,7 @@ export_arch() {
     cp "$src_dir"/backends/imgui_impl_glfw.cpp "$dst/backends/"
     cp "$src_dir"/backends/imgui_impl_opengl3.h "$dst/backends/"
     cp "$src_dir"/backends/imgui_impl_opengl3.cpp "$dst/backends/"
+    cp "$src_dir"/backends/imgui_impl_opengl3_loader.h "$dst/backends/"
 
     printf "\033[32m[OK]\033[0m imgui exported for %s\n" "$arch"
 }
