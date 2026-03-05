@@ -11,7 +11,7 @@
 
 set -e
 
-SCRIPTS="sqlite3.sh llama.sh stable-diffusion.sh openssl.sh imagemagick.sh resvg.sh"
+SCRIPTS="sqlite3.sh llama.sh stable-diffusion.sh openssl.sh imagemagick.sh resvg.sh glfw.sh imgui.sh"
 DEV_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BUILD_DIR="$DEV_DIR"
 DEPS_ROOT="$(dirname "$DEV_DIR")"
@@ -25,6 +25,8 @@ resolve_vendor_dir() {
         "openssl.sh") printf "%s/lib/openssl\n" "$DEPS_ROOT" ;;
         "imagemagick.sh") printf "%s/lib/imagemagick\n" "$DEPS_ROOT" ;;
         "resvg.sh") printf "%s/lib/resvg\n" "$DEPS_ROOT" ;;
+        "glfw.sh") printf "%s/lib/glfw\n" "$DEPS_ROOT" ;;
+        "imgui.sh") printf "%s/lib/imgui\n" "$DEPS_ROOT" ;;
         *) return 1 ;;
     esac
 }
